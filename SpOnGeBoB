@@ -1,0 +1,27 @@
+# Written and tested in PSVersion 5.1.15063.483
+# Script input: Stupid and mostly useless Powershell scripts made for learning purposes.
+# Script output: StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPtS mAdE fOr LeArNiNg PuRpOsEs.
+
+$String = (Read-Host "INPUT STRING").ToCharArray()
+$Inc = 0
+$Special = "[\w]"
+$SpOnGeBoB = @()
+foreach ($Char in $String)
+{
+    if (($Special -notcontains $Char) -and ($Char -ne " "))
+    {
+        if ($Inc % 2 -eq 0)
+        {
+            $SpOnGeBoB += $Char.ToString().ToUpper(); $Inc++
+        }
+        else
+        {
+            $SpOnGeBoB += $Char.ToString().ToLower(); $Inc++
+        }         
+    }
+    else
+    {
+        $SpOnGeBoB += $Char
+    }
+}
+Write-Host -ForegroundColor Yellow ($SpOnGeBoB -join "")
