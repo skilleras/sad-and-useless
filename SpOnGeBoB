@@ -3,7 +3,7 @@
 # Script output: StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPtS mAdE fOr LeArNiNg PuRpOsEs.
 
 $String = (Read-Host "INPUT STRING").ToCharArray()
-$Inc = 0
+$Inc = Get-Random (0,1)
 $Special = "[\w]"
 $SpOnGeBoB = @()
 foreach ($Char in $String)
