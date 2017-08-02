@@ -10,14 +10,11 @@ foreach ($Char in $String)
 {
     if (($Special -notcontains $Char) -and ($Char -ne " "))
     {
-        if ($Inc % 2 -eq 0)
+        switch ($Inc % 2 -eq 0)
         {
-            $SpOnGeBoB += $Char.ToString().ToUpper(); $Inc++
+            {$_ -eq $true} {$SpOnGeBoB += $Char.ToString().ToUpper(); $Inc++}
+            {$_ -eq $false} {$SpOnGeBoB += $Char.ToString().ToLower(); $Inc++}
         }
-        else
-        {
-            $SpOnGeBoB += $Char.ToString().ToLower(); $Inc++
-        }         
     }
     else
     {
