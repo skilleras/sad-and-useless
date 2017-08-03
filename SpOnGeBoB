@@ -1,24 +1,26 @@
 # Written and tested in PSVersion 5.1.15063.483
-# Script input: Stupid and mostly useless Powershell scripts made for learning purposes.
-# Script output: StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPtS mAdE fOr LeArNiNg PuRpOsEs.
+# Input: A stupid and mostly useless Powershell script made for learning purposes.
+# Output: a StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPt MaDe FoR lEaRnInG pUrPoSeS.
 
-$String = (Read-Host "INPUT STRING").ToCharArray()
-$Inc = Get-Random (0,1)
-$Special = "[\w]"
-$SpOnGeBoB = @()
+$String = (Read-Host "What do you want to SpOnGeBoBiFy").ToCharArray()
+$Inc = Get-Random (0,1); $Special = "[\w]"; $Result = @()
 foreach ($Char in $String)
 {
     if (($Special -notcontains $Char) -and ($Char -ne " "))
     {
         switch ($Inc % 2 -eq 0)
         {
-            {$_ -eq $true} {$SpOnGeBoB += $Char.ToString().ToUpper(); $Inc++}
-            {$_ -eq $false} {$SpOnGeBoB += $Char.ToString().ToLower(); $Inc++}
+            {$_ -eq $true} {$Result += $Char.ToString().ToUpper(); $Inc++}
+            {$_ -eq $false} {$Result += $Char.ToString().ToLower(); $Inc++}
         }
     }
     else
     {
-        $SpOnGeBoB += $Char
+        $Result += $Char
     }
 }
-Write-Host -ForegroundColor Yellow ($SpOnGeBoB -join "")
+$SpOnGeBoB = $Result -join ""; [Windows.Forms.Clipboard]::SetText($SpOnGeBoB)
+Write-Host " "
+Write-Host -ForegroundColor Yellow $SpOnGeBoB
+Write-Host " "
+Write-Host -ForegroundColor Yellow "The result has been copied to clipboard!"
