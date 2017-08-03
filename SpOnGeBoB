@@ -20,7 +20,7 @@ foreach ($Char in $String)
     }
 }
 $SpOnGeBoB = $Result -join ""; [Windows.Forms.Clipboard]::SetText($SpOnGeBoB)
-Write-Host " "
+Write-Host "`n"
 Write-Host -ForegroundColor Yellow $SpOnGeBoB
-Write-Host " "
+Write-Host "`n"
 Write-Host -ForegroundColor Yellow "The result has been copied to clipboard!"
