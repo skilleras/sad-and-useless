@@ -23,4 +23,4 @@ $SpOnGeBoB = $Result -join ""; Set-Clipboard $SpOnGeBoB
 Write-Host " "
 Write-Host -ForegroundColor Yellow $SpOnGeBoB
 Write-Host " "
-Write-Host -ForegroundColor Yellow "The result has been copied to clipboard!"
+Write-Host -ForegroundColor Green "The result has been copied to clipboard!"
