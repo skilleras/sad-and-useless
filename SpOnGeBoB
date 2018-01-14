@@ -3,7 +3,7 @@
 # Output: a StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPt MaDe FoR lEaRnInG pUrPoSeS.
 
 $String = (Read-Host "What do you want to SpOnGeBoBiFy").ToCharArray()
-$Inc = Get-Random (0,1); $Special = "[\w]"; $Result = @()
+$Inc = Get-Random (0,1); $Special = "[\w]"; $Result = @(); $Exit = 5
 foreach ($Char in $String)
 {
     if (($Special -notcontains $Char) -and ($Char -ne " "))
