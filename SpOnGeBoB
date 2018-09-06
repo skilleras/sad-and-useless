@@ -2,9 +2,8 @@
 # Input: A stupid and mostly useless Powershell script made for learning purposes.
 # Output: a StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPt MaDe FoR lEaRnInG pUrPoSeS.
 
-$String = (Read-Host "What do you want to SpOnGeBoBiFy").ToCharArray()
-$Inc = Get-Random (0,1); $Special = "[\w]"; $Result = @(); $Exit = 5
-foreach ($Char in $String)
+$Inc = Get-Random (0,1); $Special = "[\w]"; $Result = @(); $Exit = 3
+foreach ($Char in ((Read-Host "What do you want to SpOnGeBoBiFy").ToCharArray()))
 {
     if (($Special -notcontains $Char) -and ($Char -ne " "))
     {
@@ -20,7 +19,9 @@ foreach ($Char in $String)
     }
 }
 $SpOnGeBoB = $Result -join ""; Set-Clipboard $SpOnGeBoB
-Write-Host " "
-Write-Host -ForegroundColor Yellow $SpOnGeBoB
-Write-Host " "
-Write-Host -ForegroundColor Green "The result has been copied to clipboard!"
+""; Write-Host -ForegroundColor Yellow $SpOnGeBoB
+""; Write-Host -ForegroundColor Green "The result has been copied to clipboard!"; ""
+while ($Exit -ne "0")
+    {
+    Write-Host -ForegroundColor Red "This window will close in $Exit seconds"; $Exit--; Start-Sleep -Seconds 1
+    }
