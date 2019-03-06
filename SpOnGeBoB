@@ -1,27 +1,12 @@
-# Written and tested in PSVersion 5.1.15063.483
-# Input: A stupid and mostly useless Powershell script made for learning purposes.
-# Output: a StUpId AnD mOsTlY uSeLeSs PoWeRsHeLl ScRiPt MaDe FoR lEaRnInG pUrPoSeS.
-
-$Inc = Get-Random (0,1); $Special = "[\w]"; $Result = @(); $Exit = 3
-foreach ($Char in ((Read-Host "What do you want to SpOnGeBoBiFy").ToCharArray()))
+$Count = Get-Random (0,1); $Result = @(); $Int = 0
+foreach ($Char in ((Read-Host "INPUT").ToCharArray()))
 {
-    if (($Special -notcontains $Char) -and ($Char -ne " "))
+    $Special = (($Char -notmatch "[\w]") -or ($Char -match "[\s]")); $Count = ($Int % 2 -eq 0)
+    switch ($Special,$Count)
     {
-        switch ($Inc % 2 -eq 0)
-        {
-            {$_ -eq $true} {$Result += $Char.ToString().ToUpper(); $Inc++}
-            {$_ -eq $false} {$Result += $Char.ToString().ToLower(); $Inc++}
-        }
-    }
-    else
-    {
-        $Result += $Char
+        {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); $Int = $Int + (Get-Random (0,1)); BREAK}
+        {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); $Int = $Int + (Get-Random (0,1)); BREAK} 
+        {($Special-eq $TRUE)} {$Result += $Char; BREAK}
     }
 }
-$SpOnGeBoB = $Result -join ""; Set-Clipboard $SpOnGeBoB
-""; Write-Host -ForegroundColor Yellow $SpOnGeBoB
-""; Write-Host -ForegroundColor Green "The result has been copied to clipboard!"; ""
-while ($Exit -ne "0")
-    {
-    Write-Host -ForegroundColor Red "This window will close in $Exit seconds"; $Exit--; Start-Sleep -Seconds 1
-    }
+Set-Clipboard ($Result -join "")
