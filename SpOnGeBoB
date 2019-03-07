@@ -1,12 +1,12 @@
 $Result = @()
 foreach ($Char in ((Read-Host "INPUT").ToCharArray()))
 {
-    $Special = (($Char -match "[\W]") -or ($Char -match "[\s]")); $Count = ((Get-Random (0,1)) % 2 -eq 0)
+    $Special = ($Char -match "[\W\s]"); $Count = ((Get-Random (0,1)) % 2 -eq 0)
     switch ($Special,$Count)
     {
         {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); BREAK}
         {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); BREAK} 
-        {($Special-eq $TRUE)} {$Result += $Char}
+        {($Special-eq $TRUE)} {$Result += $Char; BREAK}
     }
 }
 Set-Clipboard ($Result -join "")
