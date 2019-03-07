@@ -1,11 +1,11 @@
-$Count = Get-Random (0,1); $Result = @(); $Int = 0
+$Result = @()
 foreach ($Char in ((Read-Host "INPUT").ToCharArray()))
 {
-    $Special = (($Char -notmatch "[\w]") -or ($Char -match "[\s]")); $Count = ($Int % 2 -eq 0)
+    $Special = (($Char -notmatch "[\w]") -or ($Char -match "[\s]")); $Count = ((Get-Random (0,1)) % 2 -eq 0)
     switch ($Special,$Count)
     {
-        {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); $Int = $Int + (Get-Random (0,1)); BREAK}
-        {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); $Int = $Int + (Get-Random (0,1)); BREAK} 
+        {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); BREAK}
+        {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); BREAK} 
         {($Special-eq $TRUE)} {$Result += $Char; BREAK}
     }
 }
