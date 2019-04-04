@@ -1,8 +1,7 @@
 $Result = @()
 foreach ($Char in ((Read-Host "INPUT").ToCharArray()))
 {
-    $Special = ($Char -match "[\W\s]"); $Count = ((Get-Random (0,1)) % 2 -eq 0)
-    switch ($Special,$Count)
+    switch (($Special = ($Char -match "[\W\s]")),($Count = ((Get-Random (0,1)) % 2 -eq 0)))
     {
         {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); BREAK}
         {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); BREAK} 
