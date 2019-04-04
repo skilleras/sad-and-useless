@@ -1,11 +1,31 @@
-$Result = @()
-foreach ($Char in ((Read-Host "INPUT").ToCharArray()))
+function Spongebob ([string]$String,[switch]$Reverse,[switch]$Random,[switch]$Both)
 {
-    switch (($Special = ($Char -match "[\W\s]")),($Count = ((Get-Random (0,1)) % 2 -eq 0)))
+    # Array for output
+    $Result = @()
+
+    # Spongebobify input
+    foreach ($Char in ($String.ToCharArray()))
     {
-        {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); BREAK}
-        {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); BREAK} 
-        {($Special-eq $TRUE)} {$Result += $Char; BREAK}
+        switch (($Special = ($Char -match "[\W\s]")),($Count = ((Get-Random (0,1)) % 2 -eq 0)))
+        {
+            {($Special-eq $FALSE) -and ($Count -eq $TRUE)} {$Result += $Char.ToString().ToUpper(); BREAK}
+            {($Special-eq $FALSE) -and ($Count -eq $FALSE)} {$Result += $Char.ToString().ToLower(); BREAK} 
+            {($Special-eq $TRUE)} {$Result += $Char; BREAK}
+        }
     }
+
+    # Reverse character order if Reverse flag is used
+    if ($Reverse -or $Both)
+    {
+        [array]::Reverse($Result)
+    }
+
+    # Randomize word order if Random flag is used
+    if ($Random -or $Both)
+    {
+        $Result = (($Result -join "") -split " " | Sort-Object {Get-Random}) -join " "
+    }
+    
+    # Copy result to clipboard
+    Set-Clipboard ($Result -join "")
 }
-Set-Clipboard ($Result -join "")
